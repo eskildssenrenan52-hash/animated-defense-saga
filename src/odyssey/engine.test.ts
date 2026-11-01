@@ -31,6 +31,12 @@ describe('Engine — campanha integrada', { timeout: 90000 }, () => {
     expect(g.availableQuest('vigia_moonwood')?.id).toBe('moonwood_1');
     expect(g.availableQuest('vigia_prism')).toBeUndefined();
   });
+  it('história obrigatória: pular não fecha a cena antes da última fala', () => {
+    g.fireBeats('new');
+    g.advanceCutscene(true);
+    expect(g.cutscene?.beat.id).toBe('prologue');
+    expect(g.cutscene?.i).toBe(1);
+  });
   it('cenas: enfileira, avança, não repete e sobrevive a save/load', () => {
     g.fireBeats('new');
     expect(g.cutscene?.beat.id).toBe('prologue');
