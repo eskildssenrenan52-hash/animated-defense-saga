@@ -204,6 +204,7 @@ export class Game {
   /** Ciclo do Eco atual (0 = primeira jornada). Cada ciclo reergue os Ecos mais fortes. */
   cycle = 0;
   seenBeats = new Set<string>();
+  levelBeats: number[] = [];
   cutscene: { beat: Beat; i: number } | null = null;
   beatQueue: Beat[] = [];
   flash = 0; flashT = 6;
@@ -536,7 +537,7 @@ export class Game {
       this.toast(`Nível ${p.level}! +3 pontos de atributo (C)`, "#ffd040");
       this.audio.sfx("level");
       this.burst(p.x, p.y - 10, "#ffd040", 30, 90, 2, -40);
-      this.fireBeats(`level:${p.level}`);
+      this.levelBeats.push(p.level); // disparadas no próximo quadro, depois das cenas de chefe
     }
   }
   hurtPlayer(raw: number, sx: number, sy: number, visual?: FxSig) {
@@ -1071,6 +1072,7 @@ export class Game {
   }
 
   update(dt: number) {
+    if (this.levelBeats.length) { for (const lv of this.levelBeats.splice(0)) this.fireBeats(`level:${lv}`); }
     if (this.started && !this.paused && liveTick(this, dt)) { this.transition = Math.max(0, this.transition - dt); this.updateFx(dt); return; }
     if (!this.started || this.paused || this.dialog || this.openStation || this.cutscene) { this.updateFx(dt * 0.0); return; }
     this.comboT = Math.max(0, this.comboT - dt);
