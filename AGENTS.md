@@ -35,3 +35,6 @@
 - Subdirectories have their own `AGENTS.md`; read it before changing files there (see src/odyssey/AGENTS.md).
 
 - AI accessory sheets in public/look have 8 columns × 3 rows (front, right side, back), built from assets/look-src by scripts/build-look-sheets.py; look-gear.ts picks the row by facing so gear never looks pasted on.
+- The title background is one AI-generated 10×5 sheet (src/assets/intro/title-sheet.jpg) played on a canvas in brightness order with a blurred fill behind the full frame, so portrait phones never crop or over-zoom it.
+- Story scenes cannot be skipped as a whole; extra beats fire on first entry to each biome (`biome:<id>`) and at level milestones (`level:<n>`, queued until the next frame so boss scenes come first), defined in src/odyssey/lore.ts.
+- Unique bosses for the old biomes live in src/odyssey/senhores.ts and are appended to BOSSES with their own looks and intro/victory scenes.
