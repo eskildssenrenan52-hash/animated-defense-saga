@@ -366,7 +366,7 @@ const BOSS_INTROS: Beat[] = STORY_BOSSES.map((b, i) => {
   ] };
   return { id: `boss_intro_${b.id}`, trigger: `boss:intro:${b.id}`, title: `A chegada de ${b.name}`, lines, stage };
 });
-export const beatsFor = (trigger: string) => [...BEATS, ...BOSS_INTROS, ...SENHOR_INTROS].filter(b => b.trigger === trigger);
+export const beatsFor = (trigger: string) => [...BEATS, ...BOSS_INTROS, ...(SENHOR_INTROS as Beat[])].filter(b => b.trigger === trigger);
 
 /* ───────────────────────────── Progresso ───────────────────────────── */
 export const ALL_ECO_BOSSES = ECOS.map(e => `${e.biome}_boss`);
