@@ -43,6 +43,7 @@ import { BOAT_RECIPES } from "./archipelago";
 import { archipelagoInteract, archipelagoPrompt, archipelagoArea, onBoatCraft, updateSea, renderSea, islandTick, islandOnKill, leaveArchipelago, drawIslandProps, drawIslandAtmosphere, ISLAND_BOSS_RESPAWN_SECONDS, type SeaRun, type IslandRun } from "./sailing";
 import { objectiveWaypoint, type Waypoint } from "./waypoint";
 import { waterLife, windLife, biomeLife, bossArenaLife } from './biome-anim';
+import { SENHOR_LOOK } from "./senhores";
 import { STORY_BOSS_LOOK, STORY_QUESTS, ALL_ECO_BOSSES, beatsFor, depthBonus, cycleBonus, cycleBossMult, endgameDrop, actChainQuests, type Beat } from "./story";
 import { arsenalFor, runMove, type BossCtx } from "./boss-arsenal";
 import { fxFor, type FxSig } from "./fx-catalog";
@@ -58,7 +59,7 @@ const LEGACY_BOSS_LOOK: Record<string, { kind: EnemyKind; tint: string; scale: n
   fenrir: { kind: "wolf", tint: "#b8e4ff", scale: 2.6 },
   crystal_golem: { kind: "golem", tint: "#b080ff", scale: 2.5 },
 };
-const BOSS_LOOK: Record<string, { kind: EnemyKind; tint: string; scale: number }> = { ...LEGACY_BOSS_LOOK, ...STORY_BOSS_LOOK, ...ABYSS_BOSS_LOOK, ...SAGA_BOSS_LOOK, ...TUTORIAL_BOSS_LOOK, ...CITADEL_BOSS_LOOK, ...SIEGE_BOSS_LOOK };
+const BOSS_LOOK: Record<string, { kind: EnemyKind; tint: string; scale: number }> = { ...LEGACY_BOSS_LOOK, ...SENHOR_LOOK, ...STORY_BOSS_LOOK, ...ABYSS_BOSS_LOOK, ...SAGA_BOSS_LOOK, ...TUTORIAL_BOSS_LOOK, ...CITADEL_BOSS_LOOK, ...SIEGE_BOSS_LOOK };
 
 /** Cor de grading por bioma legado (os biomas de fronteira usam a própria cor-base). [r, g, b, alpha] */
 const GRADES: Partial<Record<Biome, [number, number, number, number]>> = {

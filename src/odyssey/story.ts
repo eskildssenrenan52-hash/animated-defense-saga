@@ -6,6 +6,7 @@ import { FRONTIER, FRONTIER_GATES, type FrontierBiome } from './frontier';
 import { BIOME_LEVEL } from './levels';
 import { CHRONICLE_BEATS } from './chronicle';
 import { LORE_BEATS } from './lore';
+import { SENHOR_INTROS, SENHOR_VICTORY } from './senhores';
 import type { EpicScene, StageFx } from './epic';
 
 /* ───────────────────────────── Atos ───────────────────────────── */
@@ -286,7 +287,7 @@ const act1Beats: Beat[] = [
   { id: 'a1_fenrir', trigger: 'quest:m5', title: 'O Uivo Gelado', lines: ['O uivo de Fenrir se torna uma melodia antes de sumir na neve.', 'No pico, um nome gravado no gelo: “Vael”.', 'O vento leva o nome para longe, em direção às terras de fronteira.'] },
 ];
 export const BEATS: Beat[] = [
-  ...act1Beats, ...arrivalBeats, ...memoriaBeats, ...CHRONICLE_BEATS, ...LORE_BEATS,
+  ...act1Beats, ...arrivalBeats, ...memoriaBeats, ...CHRONICLE_BEATS, ...LORE_BEATS, ...SENHOR_VICTORY,
   { id: 'prologue', trigger: 'new', title: 'Prólogo — O Último Acorde', lines: [
     'Antes dos reinos, antes dos nomes, havia uma Canção.',
     'A Árvore de Mana a cantava, e cada nota virou um lugar: um campo, um mar, uma montanha.',
@@ -365,7 +366,7 @@ const BOSS_INTROS: Beat[] = STORY_BOSSES.map((b, i) => {
   ] };
   return { id: `boss_intro_${b.id}`, trigger: `boss:intro:${b.id}`, title: `A chegada de ${b.name}`, lines, stage };
 });
-export const beatsFor = (trigger: string) => [...BEATS, ...BOSS_INTROS].filter(b => b.trigger === trigger);
+export const beatsFor = (trigger: string) => [...BEATS, ...BOSS_INTROS, ...SENHOR_INTROS].filter(b => b.trigger === trigger);
 
 /* ───────────────────────────── Progresso ───────────────────────────── */
 export const ALL_ECO_BOSSES = ECOS.map(e => `${e.biome}_boss`);

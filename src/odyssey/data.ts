@@ -1,5 +1,6 @@
 import { FOES, FOE_KINDS, foesIn, type FoeKind } from "./foes";
 import { FRONTIER, type FrontierBiome } from './frontier';
+import { SENHOR_BOSSES } from './senhores';
 import { STORY_BOSSES, STORY_NPCS, STORY_QUESTS, STORY_ITEMS, STORY_RECIPES } from './story';
 import { SIDE_NPCS, SIDE_QUESTS } from './sidequests';
 export type Slot = "weapon" | "armor" | "ring" | "amulet";
@@ -275,7 +276,7 @@ RECIPES.push({ out: "pet_treat", qty: 3, station: "alchemist", cost: { carrot: 1
 RECIPES.push({ out: "pet_feast", qty: 1, station: "alchemist", cost: { pet_treat: 3, moonflower: 1 }, gold: 10 });
 RECIPES.push({ out: "evo_stone", qty: 1, station: "alchemist", cost: { mana_shard: 5, crystal_ore: 2 }, gold: 80 });
 RECIPES.push(...STORY_RECIPES);
-BOSSES.push(...STORY_BOSSES);
+BOSSES.push(...STORY_BOSSES, ...SENHOR_BOSSES);
 NPCS.push(...STORY_NPCS);
 QUESTS.push(...STORY_QUESTS);
 
