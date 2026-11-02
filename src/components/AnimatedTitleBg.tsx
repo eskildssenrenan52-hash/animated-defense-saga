@@ -23,7 +23,12 @@ export function AnimatedTitleBg({ className }: { className?: string }) {
       const cw = img.naturalWidth / COLS, ch = img.naturalHeight / ROWS;
       const i = LOOP[f]!, sx = (i % COLS) * cw + INSET, sy = Math.floor(i / COLS) * ch + INSET;
       const sw = cw - INSET * 2, sh = ch - INSET * 2;
-      const s = Math.max(W / sw, H / sh), dw = sw * s, dh = sh * s;
+      // fundo: o quadro ampliado e desfocado; frente: o quadro inteiro, sem cortar, nítido
+      const cover = Math.max(W / sw, H / sh), cw2 = sw * cover, ch2 = sh * cover;
+      ctx.filter = "blur(14px) brightness(0.7)";
+      ctx.drawImage(img, sx, sy, sw, sh, (W - cw2) / 2, (H - ch2) / 2, cw2, ch2);
+      ctx.filter = "none";
+      const fit = Math.min(W / sw, (H * 0.9) / sh) , dw = sw * fit, dh = sh * fit;
       ctx.imageSmoothingEnabled = false;
       ctx.drawImage(img, sx, sy, sw, sh, (W - dw) / 2, (H - dh) / 2, dw, dh);
     };
